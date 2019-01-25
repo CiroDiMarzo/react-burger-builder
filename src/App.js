@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.context.toggleBackdrop = this.toggleBackdrop;
+    this.context.startOrder = this.toggleBackdrop;
   }
 
   toggleBackdrop = () => {

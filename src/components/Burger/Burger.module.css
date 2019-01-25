@@ -2,7 +2,7 @@
     width: 100%;
     margin: auto;
     height: 250px;
-    overflow: scroll;
+    overflow: auto;
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
@@ -26,5 +26,53 @@
     .Burger {
         width: 700px;
         height: 600px;
+    }
+}
+
+.ingredientEnter {
+    opacity: 0;
+    transform: translateX(-150%)
+}
+
+.ingredientEnterActive {
+    animation: enterActive .6s ease-in forwards
+}
+
+.ingredientExit {
+    opacity: 1;
+    transform: translateX(0%)
+}
+
+.ingredientExitActive {
+    animation: exitActive .6s ease-in forwards
+}
+
+@keyframes enterActive {
+    0% {
+        opacity: 0;
+        transform: translateX(-150%)
+    }
+    50% {
+        opacity: .8;
+        transform: translateX(5%)
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%)
+    }
+}
+
+@keyframes exitActive {
+    0% {
+        opacity: 1;
+        transform: translateX(0%)
+    }
+    50% {
+        opacity: .8;
+        transform: translateX(5%)
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-150%)
     }
 }

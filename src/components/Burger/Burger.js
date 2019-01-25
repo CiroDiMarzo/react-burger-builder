@@ -1,22 +1,46 @@
 import React from 'react'
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import classes from './Burger.module.css'
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
-import ingredientType from ".//BurgerIngredient/BurgerIngredientTypes";
+import IngredientType from ".//BurgerIngredient/BurgerIngredientTypes";
 
 const Burger = (props) => {
-
-  const transformedIngredients = Object.keys(props.ingredients)
+  let transformedIngredients = Object.keys(props.ingredients)
     .map(k => {
       return [...Array(props.ingredients[k])].map((_, index) => {
-        return <BurgerIngredient key={k + index} type={k} />
+        return (
+          <CSSTransition
+            key={k + index}
+            classNames={{
+              enter: classes.ingredientEnter,
+              enterActive: classes.ingredientEnterActive,
+              exit: classes.ingredientExit,
+              exitActive: classes.ingredientExitActive
+            }}
+            timeout={600}>
+            <BurgerIngredient type={k} />
+          </CSSTransition>
+        )
       });
-    });
+    })
+    .reduce((arr, el) => {
+      return arr.concat(el);
+    }, []);
+
+  let ingredientList = <p>Please start adding ingredients</p>;
+  if (transformedIngredients.length > 0) {
+    ingredientList = (
+      <TransitionGroup>
+        {transformedIngredients}
+      </TransitionGroup>
+    );
+  }
 
   return (
     <div className={classes.Burger}>
-      <BurgerIngredient type={ingredientType.breadTop} />
-      {transformedIngredients}
-      <BurgerIngredient type={ingredientType.breadBottom} />
+      <BurgerIngredient type={IngredientType.BreadTop} />
+      {ingredientList}
+      <BurgerIngredient type={IngredientType.BreadBottom} />
     </div>
   )
 }

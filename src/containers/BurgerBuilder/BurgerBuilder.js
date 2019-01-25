@@ -86,22 +86,22 @@ class BurgerBuilder extends Component {
         this.setState({
             purchasing: true
         });
-        this.context.toggleBackdrop();
+        this.context.startOrder();
+    }
+
+    purchaseCancelHandler = () => {
+        this.hideOrderWindow();
     }
 
     hideOrderWindow = () => {
         this.setState({
             purchasing: false
         });
-        this.context.toggleBackdrop();
-    }
-
-    cancelOrder = () => {
-        this.hideOrderWindow();
+        this.context.startOrder();
     }
 
     componentDidMount = () => {
-        this.context.cancelOrder = this.cancelOrder;
+        this.context.cancelOrder = this.purchaseCancelHandler;
     }
     
     render() {

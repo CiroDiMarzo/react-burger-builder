@@ -9,14 +9,14 @@ const controls = IngredientTypes.ingredients.filter(i =>
 const buildControls = (props) => {
   const buildControls = controls.map(
     c => {
-    const quantity = props.quantities.find(t => t.type === c.type);
-    return <BuildControl
-      key={c.type}
-      type={c.type}
-      label={c.name}
-      quantity={quantity}
-      onAdd={props.onAdd}
-      onRemove={props.onRemove} />;
+      const quantity = props.quantities.find(t => t.type === c.type);
+      return <BuildControl
+        key={c.type}
+        type={c.type}
+        label={c.name}
+        quantity={quantity}
+        onAdd={props.onAdd}
+        onRemove={props.onRemove} />;
     }
   );
 
@@ -24,7 +24,10 @@ const buildControls = (props) => {
     <div className={classes.BuildControls}>
       <p>Current Price: <strong>{props.totalPrice.toFixed(2)}</strong></p>
       {buildControls}
-      <button className={classes.OrderButton} disabled={!props.purchasable}>ORDER BUTTON</button>
+      <button
+        className={classes.OrderButton}
+        disabled={!props.purchasable}
+        onClick={props.ordered}>ORDER BUTTON</button>
     </div>
   )
 }

@@ -1,0 +1,69 @@
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    left: 15%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+
+.ModalEnter {
+    opacity: 0;
+    transform: translateY(-100vh);
+}
+
+.ModalEnterActive {
+    animation: enterActive .4s ease-in forwards;
+}
+
+.ModalExit {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+.ModalExitActive {
+    animation: exitActive .4s ease-in forwards;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}
+
+@keyframes enterActive {
+    0% {
+        opacity: 0;
+        transform: translateY(-100vh);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(5vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0vh);
+    }
+}
+
+@keyframes exitActive {
+    0% {
+        opacity: 1;
+        transform: translateY(0vh);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(5vh);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh);
+    }
+}

@@ -3,8 +3,14 @@ import Aux from "../../hoc/Auxiliary";
 import Burger from "../../components/Burger/Burger";
 import IngredientTypes from "../../components/Burger/BurgerIngredient/BurgerIngredientTypes";
 import BuildControls from "../../components/Burger/BuldsControls/BuildControls";
+import Modal from "../../components/ui/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
+import BurgerContext from "../../burger-context";
 
 class BurgerBuilder extends Component {
+
+    static contextType = BurgerContext;
+
     constructor(props) {
         super(props);
 
@@ -18,7 +24,8 @@ class BurgerBuilder extends Component {
             ingredients: ingredients,
             totalPrice: 4,
             quantities: [],
-            purchasable: false
+            purchasable: false,
+            purchasing: false
         }
     }
 
@@ -75,16 +82,33 @@ class BurgerBuilder extends Component {
         })
     }
 
+    purchaseHandler = () => {
+        this.setState({
+            purchasing: true
+        });
+        this.context.toggleBackdrop();
+    }
+
+    hideOrderWindow = () => {
+        this.setState({
+            purchasing: false
+        });
+        this.context.toggleBackdrop();
+    }
     render() {
         return (
             <Aux>
+                <Modal showModal={this.state.purchasing}>
+                    <OrderSummary ingredients={this.state.ingredients} />
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     purchasable={this.state.purchasable}
                     totalPrice={this.state.totalPrice}
                     quantities={this.state.quantities}
                     onAdd={this.addIngredientHandler}
-                    onRemove={this.removeIngredientHandler} />
+                    onRemove={this.removeIngredientHandler}
+                    ordered={this.purchaseHandler} />
             </Aux>
         );
     }

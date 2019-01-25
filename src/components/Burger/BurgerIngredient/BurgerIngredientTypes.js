@@ -14,4 +14,10 @@ export default class IngredientType {
         { name: 'Salad', type: IngredientType.Salad, price: 0.5 },
         { name: 'Vegan Bacon', type: IngredientType.VeganBacon, price: 0.7 }
     ];
+
+    static getNameByType = (type) => {
+        const ingredient = IngredientType.ingredients.find(i => i.type === type);
+
+        return ingredient.name;
+    }
 }

@@ -64,10 +64,16 @@ class BurgerBuilder extends Component {
                 return { type: ingType, quantity:this.state.ingredients[ingType] };
             });
 
+        let totalQuantity = 0;
+        for (const quantity of quantities) {
+            totalQuantity += quantity.quantity;
+        }
+
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
+                    purchasable={totalQuantity > 0}
                     totalPrice={this.state.totalPrice}
                     quantities={quantities}
                     onAdd={this.addIngredientHandler}

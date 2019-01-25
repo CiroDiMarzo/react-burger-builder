@@ -7,7 +7,7 @@ class Backdrop extends Component {
 
     render() {
         if (this.props.show) {
-            return <div className={classes.Backdrop}></div>;
+            return <div className={classes.Backdrop} onClick={this.context.cancelOrder}></div>;
         } else {
             return null;
         }

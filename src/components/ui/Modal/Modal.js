@@ -3,17 +3,24 @@ import { CSSTransition } from "react-transition-group";
 import classes from './Modal.module.css'
 
 const modal = (props) => {
+
+    const modalClasses = [classes.Modal];
+    if (props.showModal) {
+        modalClasses.push(classes.ModalExit);
+    } else {
+        modalClasses.push(classes.ModalDone);
+    }
+
     return (
         <CSSTransition
             in={props.showModal}
             timeout={400}
             classNames={{
-                enter: classes.ModalEnter,
                 enterActive: classes.ModalEnterActive,
-                exit: classes.ModalExit,
-                exitActive: classes.ModalExitActive
+                exitActive: classes.ModalExitActive,
+                exitDone: classes.ModalDone
             }}>
-            <div className={[classes.Modal, classes.ModalEnter].join(' ')}>
+            <div className={modalClasses.join(' ')}>
                 {props.children}
             </div>
         </CSSTransition>

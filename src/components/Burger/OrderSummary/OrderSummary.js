@@ -2,6 +2,8 @@ import React from 'react'
 import Aux from "../../../hoc/Auxiliary";
 import IngredientTypes from "../BurgerIngredient/BurgerIngredientTypes";
 
+import classes from './OrderSummary.module.css'
+
 const orderSummary = (props) => {
     const ingredientSummary = Object.keys(props.ingredients)
         .map(igKey => {
@@ -20,7 +22,7 @@ const orderSummary = (props) => {
             <ul>
                 {ingredientSummary}
             </ul>
-            <p>Continue to checkout</p>
+            <button style={{margin: 'auto'}} className={classes.OrderButton}>Checkout!</button>
         </Aux>
     )
 }

@@ -95,6 +95,15 @@ class BurgerBuilder extends Component {
         });
         this.context.toggleBackdrop();
     }
+
+    cancelOrder = () => {
+        this.hideOrderWindow();
+    }
+
+    componentDidMount = () => {
+        this.context.cancelOrder = this.cancelOrder;
+    }
+    
     render() {
         return (
             <Aux>

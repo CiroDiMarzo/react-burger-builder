@@ -19,7 +19,7 @@
 }
 
 .ModalEnterActive {
-    animation: enterActive .4s ease-in forwards;
+    animation: enterActive .4s ease-in-out forwards;
 }
 
 .ModalExit {
@@ -43,7 +43,7 @@
         opacity: 0;
         transform: translateY(-100vh);
     }
-    50% {
+    80% {
         opacity: 1;
         transform: translateY(5vh);
     }

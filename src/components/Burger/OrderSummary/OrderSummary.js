@@ -26,6 +26,7 @@ class OrderSummary extends Component {
                 <ul>
                     {ingredientSummary}
                 </ul>
+                <p><strong>Total price: {this.props.totalPrice.toFixed(2)}</strong></p>
                 <button className={classes.OrderButton} onClick={this.context.cancelOrder}>Cancel</button>
                 <button className={classes.OrderButton} onClick={this.context.cancelOrder}>Checkout!</button>
             </Aux>

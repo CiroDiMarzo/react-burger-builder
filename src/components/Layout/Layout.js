@@ -6,7 +6,7 @@ const layout = (props) => {
     return (
         <Aux>
             {/* <div>Toolbar, SideDrawer</div> */}
-            <main style={{marginTop:'5%'}} className={classes.Content}>
+            <main className={classes.Content}>
                 {props.children}
             </main>
         </Aux>
